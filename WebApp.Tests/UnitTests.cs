@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Tests
 {
-    public class ProductController_UnitTest
+    public class UnitTests
     {
         private readonly IDbService _dbsvc;
         private readonly IPricingService _pricsvc;
         private ProductsController _controller;
 
-        public ProductController_UnitTest()
+        public UnitTests()
         {
             _dbsvc = new DbService();
 
