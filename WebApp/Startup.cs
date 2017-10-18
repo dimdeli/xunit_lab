@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebApp.Services;
 
 namespace WebApp
 {
@@ -24,6 +25,10 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // Add application services.
+            services.AddTransient<IDbService, DbService>();
+            services.AddTransient<IPricingService, PricingService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
