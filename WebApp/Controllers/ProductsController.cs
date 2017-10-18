@@ -25,7 +25,7 @@ namespace WebApp.Controllers
         {
             var product = default(ProductItem);
 
-            if(code == null) {
+            if (code == null) {
                 return BadRequest(product);
             }
 
