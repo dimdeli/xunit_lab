@@ -19,7 +19,7 @@ namespace WebApp.Controllers
             _pricsvc = pricsvc;
         }
 
-        // GET api/products/1?userId=xxx
+        // GET api/products/1?code=12abc
         [HttpGet("{id}")]
         public IActionResult Get(int id, string code)
         {
