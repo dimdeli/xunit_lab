@@ -7,17 +7,41 @@ namespace WebApp.Services
 {
     public class PricingService : IPricingService
     {
-        public decimal GetDiscount(string userId)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public decimal GetDiscount(string code)
         {
-            switch (userId)
-            {
-                case "PLAISIO":
-                    return 10M;
-                case "PUBLIC":
-                    return 8.5M;
-                default:
-                    return 0M;
+            var discount = 0M;
+
+            if (code == null) {
+                return 0M;
             }
+
+            if (code.Trim().Length != 5)
+            {
+                return 0M;
+            }
+
+            if (code.StartsWith("10")) {
+                discount = 10M;
+            }
+
+            if (code.StartsWith("20")) {
+                discount = 20M;
+            }
+
+            if (code.Contains("x")) {
+                var xCounter = code.Split('x').Length - 1;
+
+                if (xCounter > 0) {
+                    discount += xCounter;
+                }
+            }
+
+            return discount;
         }
     }
 }

@@ -21,11 +21,11 @@ namespace WebApp.Controllers
 
         // GET api/products/1?userId=xxx
         [HttpGet("{id}")]
-        public IActionResult Get(int id, string userId)
+        public IActionResult Get(int id, string code)
         {
             var product = default(ProductItem);
 
-            if(userId == null) {
+            if(code == null) {
                 return BadRequest(product);
             }
 
@@ -35,7 +35,7 @@ namespace WebApp.Controllers
                 return NotFound(product);
             }
 
-            product.DiscountPercentage = _pricsvc.GetDiscount(userId);
+            product.DiscountPercentage = _pricsvc.GetDiscount(code);
 
             return Ok(product);
         }

@@ -53,7 +53,7 @@ namespace WebApp.Tests
 
             Assert.Equal(404, notFoundResult.StatusCode);
             Assert.Null(notFoundResult.Value);
-        }
+        }        
 
         [Fact]
         public void HappyPath()
@@ -72,6 +72,45 @@ namespace WebApp.Tests
 
             Assert.Equal("Samsung S7", okProductResult.Name);
             Assert.Equal(350M, okProductResult.Price);
+        }
+
+        [Theory]
+        [InlineData("03aaa")]
+        [InlineData("17abc")]
+        [InlineData("99edf")]
+        [InlineData("10edfddd")]
+        [InlineData("20")]
+        [InlineData("xxxxxxxxxxxx")]
+        public void PricingService_Zero(string code)
+        {
+            var pricsvc = new PricingService();
+
+            Assert.Equal(0M, pricsvc.GetDiscount(code));
+        }
+
+        [Theory]
+        [InlineData("10aaa")]
+        [InlineData("10abc")]
+        [InlineData("10edf")]
+        [InlineData("10rrr")]
+        [InlineData("10tmp")]
+        public void PricingService_Discount10(string code)
+        {
+            var pricsvc = new PricingService();
+
+            Assert.Equal(10M, pricsvc.GetDiscount(code));
+        }
+
+        [Theory]
+        [InlineData("20xxa")]
+        [InlineData("20axx")]
+        [InlineData("20xzx")]
+        [InlineData("20xxx")]
+        public void PricingService_Discount20Plus(string code)
+        {
+            var pricsvc = new PricingService();
+
+            Assert.True(pricsvc.GetDiscount(code) > 20M);
         }
     }
 }
