@@ -27,7 +27,7 @@ namespace WebApp
             services.AddMvc();
 
             // Add application services.
-            services.AddTransient<IDbService, DbService>();
+            services.AddTransient<IRepositoryService, MemoryRepositoryService>();
             services.AddTransient<IPricingService, PricingService>();
         }
 

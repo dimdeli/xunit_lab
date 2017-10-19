@@ -10,12 +10,12 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class ProductsController : Controller
     {
-        private readonly IDbService _dbsvc;
+        private readonly IRepositoryService _reposvc;
         private readonly IPricingService _pricsvc;
 
-        public ProductsController(IDbService dbsvc, IPricingService pricsvc)
+        public ProductsController(IRepositoryService dbsvc, IPricingService pricsvc)
         {
-            _dbsvc = dbsvc;
+            _reposvc = dbsvc;
             _pricsvc = pricsvc;
         }
 
@@ -29,7 +29,7 @@ namespace WebApp.Controllers
                 return BadRequest(product);
             }
 
-            product = _dbsvc.GetProductItem(id);
+            product = _reposvc.GetProductItem(id);
 
             if (product == null) {
                 return NotFound(product);

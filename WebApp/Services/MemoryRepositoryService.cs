@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Services
 {
-    public class DbService : IDbService
+    public class MemoryRepositoryService : IRepositoryService
     {
         public ProductItem GetProductItem(int id)
         {

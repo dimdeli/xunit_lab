@@ -12,20 +12,19 @@ namespace WebApp.Tests
 {
     public class MyFixture : IDisposable
     {
-        public IDbService dbsvc { get; private set; }
+        public IRepositoryService reposvc { get; private set; }
         public IPricingService pricsvc { get; private set; }
         public ProductsController controller { get; private set; }
 
-
         public MyFixture()
         {
-            dbsvc = new DbService();
+            reposvc = new MemoryRepositoryService();
 
             var mockDbService = new Mock<IPricingService>();
             mockDbService.SetReturnsDefault(50M);
             pricsvc = mockDbService.Object;
 
-            controller = new ProductsController(dbsvc, pricsvc);
+            controller = new ProductsController(reposvc, pricsvc);
         }
 
         public void Dispose()
