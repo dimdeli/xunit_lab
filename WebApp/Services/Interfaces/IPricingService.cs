@@ -7,6 +7,6 @@ namespace WebApp.Services
 {
     public interface IPricingService
     {
-        decimal GetDiscount(string userId);
+        decimal GetDiscount(string code);
     }
 }
