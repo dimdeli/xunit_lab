@@ -16,7 +16,13 @@ namespace WebApp.Tests
         public void BadRequestPath()
         {
             // Arrange                        
-            var controller = new ProductsController(new MemoryRepositoryService(), new PricingService());
+            var mockPricingService = new Mock<IPricingService>();
+            mockPricingService
+                //.SetReturnsDefault(0M);
+                .Setup(a => a.DiscountPercentage(It.IsAny<string>()))
+                .Returns(0M);
+
+            var controller = new ProductsController(new MemoryRepositoryService(), mockPricingService.Object);
 
             // Act
             var result = controller.Get(1, null);
