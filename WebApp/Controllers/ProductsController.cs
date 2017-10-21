@@ -13,9 +13,9 @@ namespace WebApp.Controllers
         private readonly IRepositoryService _reposvc;
         private readonly IPricingService _pricsvc;
 
-        public ProductsController(IRepositoryService dbsvc, IPricingService pricsvc)
+        public ProductsController(IRepositoryService reposvc, IPricingService pricsvc)
         {
-            _reposvc = dbsvc;
+            _reposvc = reposvc;
             _pricsvc = pricsvc;
         }
 
