@@ -100,7 +100,7 @@ namespace WebApp.Tests
         {
             var pricsvc = new PricingService();
 
-            Assert.Equal(0M, pricsvc.GetDiscount(code));
+            Assert.Equal(0M, pricsvc.DiscountPercentage(code));
         }
 
         [Theory]
@@ -113,7 +113,7 @@ namespace WebApp.Tests
         {
             var pricsvc = new PricingService();
 
-            Assert.Equal(10M, pricsvc.GetDiscount(code));
+            Assert.Equal(10M, pricsvc.DiscountPercentage(code));
         }
 
         [Theory]
@@ -125,7 +125,7 @@ namespace WebApp.Tests
         {
             var pricsvc = new PricingService();
 
-            Assert.True(pricsvc.GetDiscount(code) > 20M);
+            Assert.True(pricsvc.DiscountPercentage(code) > 20M);
         }
     }
 }

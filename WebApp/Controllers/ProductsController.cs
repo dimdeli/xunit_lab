@@ -35,7 +35,7 @@ namespace WebApp.Controllers
                 return NotFound(product);
             }
 
-            product.DiscountPercentage = _pricsvc.GetDiscount(code);
+            product.DiscountPercentage = _pricsvc.DiscountPercentage(code);
 
             return Ok(product);
         }

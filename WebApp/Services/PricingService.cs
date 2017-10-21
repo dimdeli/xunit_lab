@@ -12,7 +12,7 @@ namespace WebApp.Services
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public decimal GetDiscount(string code)
+        public decimal DiscountPercentage(string code)
         {
             var discount = 0M;
 
