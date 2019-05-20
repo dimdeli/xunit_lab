@@ -16,7 +16,7 @@ namespace WebApp.Services
         {
             var discount = 0M;
 
-            if (code == null) {
+            if (string.IsNullOrWhiteSpace(code)) {
                 return 0M;
             }
 

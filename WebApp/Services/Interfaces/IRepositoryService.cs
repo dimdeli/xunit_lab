@@ -7,6 +7,8 @@ namespace WebApp.Services
 {
     public interface IRepositoryService
     {
-        ProductItem GetProductItem(int id);
+        IList<ProductItem> GetAll();
+
+        ProductItem Get(int id);
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using Xunit;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApp.Tests
 {
@@ -16,8 +17,14 @@ namespace WebApp.Tests
         public IPricingService pricsvc { get; private set; }
         public ProductsController controller { get; private set; }
 
+        private IServiceProvider container_;
+
         public MyFixture()
         {
+            container_ = new ServiceCollection()
+                .AddSingleton<IPricingService, PricingService>()
+                .BuildServiceProvider();
+
             reposvc = new MemoryRepositoryService();
 
             var mockDbService = new Mock<IPricingService>();
@@ -27,9 +34,14 @@ namespace WebApp.Tests
             controller = new ProductsController(reposvc, pricsvc);
         }
 
-        public void Dispose()
+        public T Resolve<T>()
         {
-            // clean up!
+            return container_.GetService<T>();
+        }
+
+        public virtual void Dispose()
+        {
+            //clean up...
         }
     }
 
@@ -37,9 +49,13 @@ namespace WebApp.Tests
     {
         private readonly MyFixture _fixture;
 
+        private readonly IPricingService _ps;
+
         public UnitTestsFixture(MyFixture fixture)
         {
-            _fixture = fixture;
+            //_fixture = fixture;
+
+            _ps = fixture.Resolve<IPricingService>();
         }
 
         [Fact]

@@ -7,7 +7,12 @@ namespace WebApp.Services
 {
     public class MemoryRepositoryService : IRepositoryService
     {
-        public ProductItem GetProductItem(int id)
+        public IList<ProductItem> GetAll()
+        {
+            return Constants.ProductItemList;
+        }
+
+        public ProductItem Get(int id)
         {
             return Constants.ProductItemList.SingleOrDefault(i => i.Id == id);
         }

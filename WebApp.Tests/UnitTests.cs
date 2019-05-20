@@ -15,7 +15,7 @@ namespace WebApp.Tests
         [Fact]
         public void BadRequestPath()
         {
-            // Arrange                        
+            // Arrange
             var mockPricingService = new Mock<IPricingService>();
             mockPricingService
                 //.SetReturnsDefault(0M);
@@ -35,6 +35,6 @@ namespace WebApp.Tests
 
             Assert.Equal(400, badResult.StatusCode);
             Assert.Null(badResult.Value);
-        }       
+        }
     }
 }

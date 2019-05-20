@@ -19,17 +19,26 @@ namespace WebApp.Controllers
             _pricsvc = pricsvc;
         }
 
+        // GET api/products
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var products = _reposvc.GetAll();
+
+            return Ok(products);
+        }
+
         // GET api/products/1?code=12abc
         [HttpGet("{id}")]
         public IActionResult Get(int id, string code)
         {
             var product = default(ProductItem);
 
-            if (code == null) {
+            if (string.IsNullOrWhiteSpace(code)) {
                 return BadRequest(product);
             }
 
-            product = _reposvc.GetProductItem(id);
+            product = _reposvc.Get(id);
 
             if (product == null) {
                 return NotFound(product);

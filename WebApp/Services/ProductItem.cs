@@ -19,6 +19,6 @@ namespace WebApp.Services
             set { price_ = value; }
         }
 
-        public decimal DiscountPercentage { get; set; }
+        internal decimal DiscountPercentage { get; set; }
     }
 }
